@@ -10,10 +10,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 
+import numpy as np
+
 iris = datasets.load_iris()
 
 X = iris.data
 y = iris.target
+
+print(np.array(X).shape)
 
 x_train, x_test, y_train, y_test = train_test_split(X, y, train_size=0.5)
 

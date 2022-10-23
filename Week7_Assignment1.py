@@ -14,6 +14,10 @@ from sklearn.datasets import make_blobs
 X, y_true = make_blobs(n_samples=700, centers=6,
                        cluster_std=0.75, random_state=0)
 
+print(np.array(X).shape)
+print(type(y_true))
+#print(X[:, 0])
+
 n_clusters = range(1, 10)
 kmeans = [KMeans(n_clusters=i) for i in n_clusters]
  
