@@ -18,7 +18,7 @@ from itertools import cycle
 
 
 
-loc = "C:/Users/yujin/Documents/SKKU/바이오빅데이터분석공학/과제/중간대체"
+loc = "."
 
 csv_data = []
 csv_target = []
