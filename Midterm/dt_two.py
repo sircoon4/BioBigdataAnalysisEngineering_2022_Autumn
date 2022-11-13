@@ -22,16 +22,13 @@ with open("FallData_Two.csv", "r") as f:
         target = np.append(target, np.array([y]))
 x_train, x_test, y_train, y_test = train_test_split(data, target, test_size = 0.3, random_state=0)
 
-#dt = DecisionTreeClassifier(criterion='entropy',max_depth=2)
-#dt = DecisionTreeClassifier(criterion='entropy',max_depth=3)
-#dt = DecisionTreeClassifier(criterion='entropy',max_depth=4)
-#dt = DecisionTreeClassifier(criterion='entropy',max_depth=5)
-dt = DecisionTreeClassifier(criterion='entropy',max_depth=None)
+# max_features=2, 6, 10, 16, 23
+dt = DecisionTreeClassifier(criterion='entropy',max_features=23, random_state=0)
 dt = dt.fit(x_train, y_train)
 dt_pred = dt.predict(x_test)
 
-print("Desirable Result = \n", y_test)
-print("Prediction Result = \n", dt_pred)
+#print("Desirable Result = \n", y_test)
+#print("Prediction Result = \n", dt_pred)
 
 print(confusion_matrix(y_test, dt_pred))
 
@@ -40,23 +37,23 @@ for i in range (2):
     no_correct += confusion_matrix(y_test, dt_pred)[i][i]
     
 ac = no_correct/len(dt_pred)
-print("Accuracy : ",ac*100,"%")
+print("Accuracy : ",ac)
 
 import matplotlib.pyplot as plt
 
-plt.figure()
-plot_tree(dt,impurity=True, filled=True, rounded=True)
-plt.show()
+#plt.figure()
+#plot_tree(dt,impurity=True, filled=True, rounded=True)
+#plt.show()
 
 from itertools import cycle
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import roc_curve, auc
 from sklearn.multiclass import OneVsRestClassifier
 
-target = label_binarize(target, classes=[0, 1, 2])
-y_test = label_binarize(y_test, classes=[0, 1, 2])
-y_train = label_binarize(y_train, classes=[0, 1, 2])
-dt_pred = label_binarize(dt_pred, classes=[0, 1, 2])
+target = label_binarize(target, classes=[1, 2, 3])
+y_test = label_binarize(y_test, classes=[1, 2, 3])
+y_train = label_binarize(y_train, classes=[1, 2, 3])
+
 n_classes = target.shape[1]
 
 classifier = OneVsRestClassifier(dt)
@@ -66,16 +63,16 @@ y_score = classifier.fit(x_train, y_train).predict_proba(x_test)
 fpr = dict()
 tpr = dict()
 roc_auc = dict()
-for j in range(n_classes):
+for j in range(n_classes - 1):
     fpr[j], tpr[j], _ = roc_curve(y_test[:, j], y_score[:, j])
     roc_auc[j] = auc(fpr[j], tpr[j])
 
 fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_score.ravel())
 roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
 
-all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
+all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes - 1)]))
 mean_tpr = np.zeros_like(all_fpr)
-for i in range(n_classes):
+for i in range(n_classes - 1):
     mean_tpr += np.interp(all_fpr, fpr[i], tpr[i])
 mean_tpr /= n_classes
 
@@ -106,7 +103,7 @@ plt.plot(
 
 lw = 2
 colors = cycle(["red", "green", "blue"])
-for i, color in zip(range(n_classes), colors):  
+for i, color in zip(range(n_classes - 1), colors):  
     plt.plot(
         fpr[i],
         tpr[i],

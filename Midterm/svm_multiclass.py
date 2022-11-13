@@ -16,9 +16,7 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import roc_auc_score
 from itertools import cycle
 
-
-
-loc = "C:/Users/yujin/Documents/SKKU/바이오빅데이터분석공학/과제/중간대체"
+loc = "."
 
 csv_data = []
 csv_target = []
@@ -31,7 +29,6 @@ with open(loc + "/FallData_Three.csv", "r") as inFp:
         arr = list(map(float, row_list))
         csv_data.append(arr[:-1])
         csv_target.append(int(arr[-1])-1)
-       
         
 csv_data = np.array(csv_data)
 csv_target = np.array(csv_target)

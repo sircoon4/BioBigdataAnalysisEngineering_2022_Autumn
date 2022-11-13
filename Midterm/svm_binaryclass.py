@@ -16,8 +16,6 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import roc_auc_score
 from itertools import cycle
 
-
-
 loc = "."
 
 csv_data = []
@@ -58,8 +56,6 @@ for i in range(2):
     no_correct += conf[i][i]
 accuracy = no_correct/len(y_pred)
 print("테스트 집합에 대한 정확률: ", accuracy*100, "%")
-
-
 
 #ROC curve...
 csv_target = label_binarize(csv_target, classes=[0, 1, 2])
