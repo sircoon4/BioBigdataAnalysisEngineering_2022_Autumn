@@ -76,13 +76,13 @@ acc_111=cross_validation(True, [0.25,0.25,0.5], 0.01)
 
 print("출력 형식: [Data augmentation-Dropout-l2 regularizer] (교차검증 시도/평균)")
 print("[000] (",acc_000,"/",np.array(acc_000).mean(),")")
-print("[000] (",acc_001,"/",np.array(acc_001).mean(),")")
-print("[000] (",acc_010,"/",np.array(acc_010).mean(),")")
-print("[000] (",acc_011,"/",np.array(acc_011).mean(),")")
-print("[000] (",acc_100,"/",np.array(acc_100).mean(),")")
-print("[000] (",acc_101,"/",np.array(acc_101).mean(),")")
-print("[000] (",acc_110,"/",np.array(acc_110).mean(),")")
-print("[000] (",acc_111,"/",np.array(acc_111).mean(),")")
+print("[001] (",acc_001,"/",np.array(acc_001).mean(),")")
+print("[010] (",acc_010,"/",np.array(acc_010).mean(),")")
+print("[011] (",acc_011,"/",np.array(acc_011).mean(),")")
+print("[100] (",acc_100,"/",np.array(acc_100).mean(),")")
+print("[101] (",acc_101,"/",np.array(acc_101).mean(),")")
+print("[110] (",acc_110,"/",np.array(acc_110).mean(),")")
+print("[111] (",acc_111,"/",np.array(acc_111).mean(),")")
 
 import matplotlib.pyplot as plt
 
