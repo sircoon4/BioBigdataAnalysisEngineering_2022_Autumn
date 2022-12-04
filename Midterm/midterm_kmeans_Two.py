@@ -81,5 +81,7 @@ for hp in hyperParameters:
 print(accuracy)
 plt.bar(np.arange(10), accuracy)
 plt.ylim(0.7, 0.71)
-plt.xticks(np.arange(10), range(10))
+xlist = [i for i in range(10)]
+xlist = np.array(xlist)
+plt.xticks(np.arange(10), xlist + 1)
 plt.show()
