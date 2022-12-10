@@ -76,7 +76,6 @@ for j in range(n_classes-1):
     fpr[j], tpr[j], _ = roc_curve(y_test[:, j], y_score[:, j])
     roc_auc[j] = auc(fpr[j], tpr[j])
 
-
 fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_score.ravel())
 roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
 
